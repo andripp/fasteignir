@@ -15,7 +15,19 @@
           center: new google.maps.LatLng(64.12860,-21.92592),
           mapTypeId: google.maps.MapTypeId.ROADMAP 
         });
+        
+        var styles = [{
+        stylers: [{ 
+            hue: "#222222" }, { 
+            saturation: -100 }]
+        }, {
+        featureType: "water",
+        elementType: "all",
+        stylers: [{ 
+            color: "#809c9b" }]
+        }];
 
+        map.setOptions({styles: styles});
         for (var i in test101) {
           var house = test101[i];
           var latLng = new google.maps.LatLng(house.latitude,house.longitude);
