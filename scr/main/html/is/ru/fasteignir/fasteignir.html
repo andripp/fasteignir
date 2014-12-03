@@ -39,11 +39,12 @@
         var marker = new google.maps.Marker({
             position: latLng,
             title: price,
-            map: map
+            map: map,
+            icon: 'orange.png'
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-          if (typeof infowindow != 'undefined') infowindow.close();
+          if (typeof infowindow != 'undefined') info,window.close();
 
           var infoContent = '<div id="content" style="overflow:hidden;line-height:1.35;min-width:200px;">'+
           '<div id="siteNotice">'+
