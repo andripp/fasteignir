@@ -14,58 +14,36 @@
           zoom: 12,
           center: new google.maps.LatLng(64.12860,-21.92592),
           mapTypeId: google.maps.MapTypeId.ROADMAP 
-        });
-        
-        var styles = [{
-        stylers: [{ 
-            hue: "#222222" }, { 
-            saturation: -100 }]
-        }, {
-        featureType: "water",
-        elementType: "all",
-        stylers: [{ 
-            color: "#667D7C" }]
-        }, {
-        featureType: "poi.business",
-        elementType: "labels",
-        stylers: [{ 
-            visibility: "off" }]
-        }];
 
-        map.setOptions({styles: styles});
+   
+        });
 
         for (var i in test101) {
           var house = test101[i];
-          var latLng = new google.maps.LatLng(house.latitude,house.longitude); 
-
-          addTheDot(map, numberWithDots(house.price), latLng, house);
+          var latLng = new google.maps.LatLng(house.latitude,house.longitude);
+          addTheDot(map, house.price, latLng, house);
         }
-      }
-      
-      function numberWithDots(x) {
-        if(x == 0) return "Tilbo\u00F0";
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       }
 
       function addTheDot(map, price, latLng, house){
         var marker = new google.maps.Marker({
             position: latLng,
             title: price,
-            map: map,
-            icon: 'purple.png'
+            map: map
         });
 
         google.maps.event.addListener(marker, 'click', function() {
           if (typeof infowindow != 'undefined') infowindow.close();
-          var infoContent = '<div id="content" style="overflow:hidden;line-height:1.35;min-width:150px;">'+
+
+          var infoContent = '<div id="content" style="overflow:hidden;line-height:1.35;min-width:200px;">'+
           '<div id="siteNotice">'+
           '</div>'+ 
           '<h1 id="firstHeading" class="firstHeading"> ' +  house.street_name  +'</h1>'+
           '<div id="bodyContent">'+
-          'Ver\u00F0: ' + '<b>' + price + '</b><br>' +
-          'St\u00E6r\u00F0: ' + '<b>' + house.size + '</b><br>' +
+          'Verd: ' + '<b>' + price + '</b><br>' +
+          'Staerd: ' + '<b>' + house.size + '</b><br>' +
           'Herbergi: ' + '<b>' + house.bedrooms + '</b></p>' +
-          '<p>' + '<a href="http://fasteignir.visir.is/property/' + house.id  + '">' + 'Sko\u00F0a n\u00E1nar' +'</a> ' +
+          '<p>Skoda nanar: ' + '<a href="http://fasteignir.visir.is/property/' + house.id  + '">' + 'skoda.eign' +'</a> ' +
           '</p>'+
           '</div>'+
           '</div>';
@@ -77,7 +55,6 @@
           infowindow.open(map,marker);
         });
       }
-
       google.maps.event.addDomListener(window, 'load', initialize);
      
     </script>
