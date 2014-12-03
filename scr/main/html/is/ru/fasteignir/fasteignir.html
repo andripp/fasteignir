@@ -35,14 +35,20 @@
         map.setOptions({styles: styles});
         for (var i in test101) {
           var house = test101[i];
-          var latLng = new google.maps.LatLng(house.latitude,house.longitude);
-          addTheDot(map, house.price, latLng, house);
+          var latLng = new google.maps.LatLng(house.latitude,house.longitude); 
+
+          addTheDot(map, numberWithDots(house.price), latLng, house);
         }
+      }
+      
+      function numberWithDots(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       }
 
       function addTheDot(map, price, latLng, house){
         var marker = new google.maps.Marker({
             position: latLng,
+            
             title: price,
             map: map,
             icon: 'orange.png'
