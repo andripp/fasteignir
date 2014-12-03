@@ -1,18 +1,35 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
-<head>
-	
-</head>
-<body>
+  <head>
+    <style>
+      html, body, #map-canvas { margin: 0; padding: 0; height: 100%; }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>
+    <script src="test101.js"></script>
+    <script>
+      var map;
 
-<h1>Fasteignakortid</h1>
+      function initialize() {
+        map = new google.maps.Map(document.getElementById('map-canvas'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8,-187.3),
+          mapTypeId: google.maps.MapTypeId.TERRAIN
+        });
 
-<p>Verkefni i HR vor 2014</p>
+        for (var i in test101) {
+          var house = test101[i];
+          var latLng = new google.maps.LatLng(house.latitude,house.longitude);
 
-
-
-
-<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d27841.168569178273!2d-21.91080477116912!3d64.1428832355428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sis!4v1417527495792" width="800" height="600" frameborder="0" style="border:0"></iframe>
-
-</body>
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+      google.maps.event.addDomListener(window, 'load', initialize)
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
 </html>
