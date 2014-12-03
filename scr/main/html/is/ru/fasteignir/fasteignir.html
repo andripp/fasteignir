@@ -28,17 +28,15 @@
             position: latLng,
             title: price,
             map: map
-          });
+        });
 
+        google.maps.event.addListener(marker, 'click', function() {
+          if (typeof infowindow != 'undefined') infowindow.close();
 
-
-          google.maps.event.addListener(marker, 'click', function() {
-            if (typeof infowindow != 'undefined') infowindow.close();
-
-          var infoContent = '<div id="content">'+
+          var infoContent = '<div id="content" style="overflow:hidden;line-height:1.35;min-width:200px;">'+
           '<div id="siteNotice">'+
-          '</div>'+
-          '<h1 id="firstHeading" class="firstHeading"> ' +  house.street_name  + '</h1>'+
+          '</div>'+ 
+          '<h1 id="firstHeading" class="firstHeading"> ' +  house.street_name  +'</h1>'+
           '<div id="bodyContent">'+
           'Verd: ' + '<b>' + price + '</b><br>' +
           'Staerd: ' + '<b>' + house.size + '</b><br>' +
@@ -48,11 +46,12 @@
           '</div>'+
           '</div>';
 
-            infowindow = new google.maps.InfoWindow({
+          infowindow = new google.maps.InfoWindow({
             content: infoContent
           });
-            infowindow.open(map,marker);
-          });
+          
+          infowindow.open(map,marker);
+        });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
      
