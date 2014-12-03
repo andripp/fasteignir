@@ -58,15 +58,15 @@
         google.maps.event.addListener(marker, 'click', function() {
           if (typeof infowindow != 'undefined') info,window.close();
 
-          var infoContent = '<div id="content" style="overflow:hidden;line-height:1.35;min-width:200px;">'+
+          var infoContent = '<div id="content" style="overflow:hidden;line-height:1.35;min-width:150px;">'+
           '<div id="siteNotice">'+
           '</div>'+ 
           '<h1 id="firstHeading" class="firstHeading"> ' +  house.street_name  +'</h1>'+
           '<div id="bodyContent">'+
-          'Verd: ' + '<b>' + price + '</b><br>' +
-          'Staerd: ' + '<b>' + house.size + '</b><br>' +
+          'Ver\u00F0: ' + '<b>' + price + '</b><br>' +
+          'St\u00E6r\u00F0: ' + '<b>' + house.size + '</b><br>' +
           'Herbergi: ' + '<b>' + house.bedrooms + '</b></p>' +
-          '<p>Skoda nanar: ' + '<a href="http://fasteignir.visir.is/property/' + house.id  + '">' + 'skoda.eign' +'</a> ' +
+          '<p>' + '<a href="http://fasteignir.visir.is/property/' + house.id  + '">' + 'Sko\u00F0a n\u00E1nar' +'</a> ' +
           '</p>'+
           '</div>'+
           '</div>';
