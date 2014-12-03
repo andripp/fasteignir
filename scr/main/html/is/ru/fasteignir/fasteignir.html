@@ -10,7 +10,7 @@
       var map;
 
       function initialize() {
-        map = new google.maps.Map(document.getElementById('map-canvas'), {
+        map = new google.maps.Map(document.getElementById('map-canvas'),{
           zoom: 12,
           center: new google.maps.LatLng(64.12860,-21.92592),
           mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -19,21 +19,37 @@
         for (var i in test101) {
           var house = test101[i];
           var latLng = new google.maps.LatLng(house.latitude,house.longitude);
-          addTheDot(map, house.price, latLng);
+          addTheDot(map, house.price, latLng, house);
         }
       }
 
-      function addTheDot(map, price, latLng){
+      function addTheDot(map, price, latLng, house){
         var marker = new google.maps.Marker({
             position: latLng,
             title: price,
             map: map
           });
 
+
+
           google.maps.event.addListener(marker, 'click', function() {
             if (typeof infowindow != 'undefined') infowindow.close();
+
+          var infoContent = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading"> ' +  house.street_name  + '</h1>'+
+          '<div id="bodyContent">'+
+          'Verd: ' + '<b>' + price + '</b><br>' +
+          'Staerd: ' + '<b>' + house.size + '</b><br>' +
+          'Herbergi: ' + '<b>' + house.bedrooms + '</b><br>' +
+          'Skoda nanar: ' + '<a href="http://fasteignir.visir.is/property/' + house.id  + '</a> ' +
+          '</p>'+
+          '</div>'+
+          '</div>';
+
             infowindow = new google.maps.InfoWindow({
-            content: price
+            content: infoContent
           });
             infowindow.open(map,marker);
           });
