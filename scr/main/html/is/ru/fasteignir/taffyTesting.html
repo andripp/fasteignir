@@ -6,7 +6,7 @@
     <style> html, body, #map-canvas { margin: 0; padding: 0; height: 100%; } </style>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>
     <script src="test101.js"></script>
-     <script src="taffy.js"></script>
+    <script src="taffy.js"></script>
     <script>
       var map;
       var markers = [];
@@ -18,6 +18,12 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP 
         });
         
+
+        var saleList = TAFFY([{"id":"137508","bedrooms":"2","bathrooms":"1","street_name":"Framnesvegur","street_number":"6"}]);
+        saleList.store("saleList");
+        alert(saleList({"id":"137508"}).count);
+
+
         var styles = [{
         stylers: [{ 
             hue: "#222222" }, { 
@@ -36,6 +42,8 @@
 
         map.setOptions({styles: styles});
 
+
+      
         for (var i in test101) {
           var house = test101[i];
           var latLng = new google.maps.LatLng(house.latitude,house.longitude); 
@@ -68,7 +76,6 @@
           '<div id="siteNotice">'+
           '</div>'+ 
           '<h1 id="firstHeading" class="firstHeading"> ' +  house.street_name  +'</h1>'+
-          '<img src="' + house.image + '" alt="Mynd." style="width:100px;height:100px">' +
           '<div id="bodyContent">'+
           'Ver\u00F0: ' + '<b>' + price + '</b><br>' +
           'St\u00E6r\u00F0: ' + '<b>' + house.size + '</b><br>' +
